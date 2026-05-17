@@ -1,0 +1,32 @@
+import { cafePageSchema } from '@/templates/cafe/schema'
+
+export const defaultCafePageData = cafePageSchema.parse({
+  shopName: '오늘의 브런치',
+  tagline: '신선한 재료, 느린 아침',
+  heroTitle: '주말 브런치 예약 오픈',
+  heroText: '시즌 메뉴와 페어링 커피를 만나보세요. 단체석 가능합니다.',
+  address: '서울특별시 마포구 어울마당로 00',
+  hours: '화–일 10:00 – 21:00 (월 휴무)',
+  mapUrl: 'https://maps.google.com',
+  heroImageUrl: '',
+  reserveLabel: '예약하기',
+  reserveUrl: 'https://example.com/reserve',
+  amenityParking: '건물 지하 2시간 무료',
+  amenityPets: '소형견 동반 가능 (리드줄 필수)',
+  amenityWifi: '매장 전 구역 무료',
+  amenityAccessibility: '휠체어 진입 가능',
+  amenityPayment: '카드 · 간편결제',
+  menuItems: [
+    { name: '시그니처 브런치', price: '₩18,500', description: '에그 베네딕트, 시즌 샐러드, 핸드드립' },
+    { name: '플랫 화이트', price: '₩5,500', description: '하우스 블렌드 · ICE/HOT' },
+    { name: '레몬 리코타 토스트', price: '₩12,000', description: '수제 리코타 · 허브 오일' },
+    { name: '시즌 케이크', price: '₩7,000', description: '오늘의 조각 케이크' },
+    { name: '아메리카노', price: '₩4,500', description: '싱글 오리진 · 디카페인 선택' },
+    { name: '카페 라떼', price: '₩5,000', description: '오트·두유 변경 가능' },
+    { name: '바닐라 크림 콜드브루', price: '₩6,500', description: '시즌 한정' },
+    { name: '트러플 파스타', price: '₩16,000', description: '런치 세트 +₩3,000' },
+    { name: '그릭 요거트 볼', price: '₩9,500', description: '제철 과일 · 그래놀라' },
+    { name: '하이볼 에이드', price: '₩8,000', description: '논알콜 · 저녁 메뉴' },
+  ],
+  galleryImageUrls: [],
+})
