@@ -123,7 +123,7 @@ found 0 vulnerabilities
 ### 4.3 클라이언트 저장·비밀
 
 - 현재 MVP는 **브라우저 로컬 상태** 중심이며, API 키·비밀번호를 코드에 두지 않습니다.
-- `.env`는 `.gitignore` 대상으로 두는 것을 권장합니다(저장소에 커밋 금지).
+- `.env`, `.env.*`(`.env.example` 제외), `*.pem`, `credentials.json` 등은 **`.gitignore`에 등록**되어 있습니다. 템플릿은 `.env.example`만 커밋합니다.
 
 ### 4.4 `shadcn` 런타임 의존성
 

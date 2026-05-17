@@ -21,7 +21,9 @@ git log -1 --oneline
 origin  https://github.com/bono-yoon/Formora.git
 ```
 
-GitHub에 **아직 저장소가 없으면** push가 `Repository not found`로 실패합니다. 아래 순서로 생성하세요.
+원격 저장소: **https://github.com/bono-yoon/Formora.git**
+
+GitHub에 저장소가 없으면 push가 `Repository not found`로 실패합니다. 아래 순서로 생성하세요.
 
 ### 1. GitHub에서 저장소 생성
 

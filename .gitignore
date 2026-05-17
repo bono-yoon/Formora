@@ -1,4 +1,25 @@
-# Logs
+# Dependencies & build
+node_modules
+dist
+dist-ssr
+build
+coverage
+*.tsbuildinfo
+
+# Environment & secrets (never commit)
+.env
+.env.*
+!.env.example
+.envrc
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+secrets.json
+*.secret
+
+# Logs & debug
 logs
 *.log
 npm-debug.log*
@@ -7,21 +28,25 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-.env
-.env.*
-!.env.example
-dist-ssr
+# Vite / local overrides
 *.local
 
-# Editor directories and files
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor (keep shared extensions list)
 .vscode/*
 !.vscode/extensions.json
 .idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
+
+# Optional tooling caches
+.turbo
+.cache
+.eslintcache
