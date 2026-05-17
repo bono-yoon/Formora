@@ -2,6 +2,7 @@ import { Plus, Trash2 } from 'lucide-react'
 import { useMemo, useState } from 'react'
 
 import { ExportToolbar } from '@/components/builder/ExportToolbar'
+import { BuilderThemedPreview } from '@/components/builder/BuilderThemedPreview'
 import { PreviewFrame } from '@/components/builder/PreviewFrame'
 import { BuilderFormField } from '@/features/builder/BuilderFormField'
 import { usePreviewTarget } from '@/features/builder/use-preview-target'
@@ -261,7 +262,9 @@ export function CafeBuilderView({ variantId }: { variantId: string }) {
       </div>
 
       <PreviewFrame className="lg:min-w-0 lg:flex-1">
-        <CafeTemplatePreview data={data} variant={cafeVariantFromCatalogId(variantId)} layout={target} />
+        <BuilderThemedPreview categoryId="cafe" variantId={variantId}>
+          <CafeTemplatePreview data={data} variant={cafeVariantFromCatalogId(variantId)} layout={target} />
+        </BuilderThemedPreview>
       </PreviewFrame>
     </div>
   )

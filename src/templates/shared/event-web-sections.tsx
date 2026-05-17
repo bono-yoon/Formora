@@ -1,6 +1,7 @@
 'use client'
 
 import { PartnerMark } from '@/templates/company/company-partner-mark'
+import { previewWebSectionsStack } from '@/templates/preview-layout'
 import type { EventOnlyDesign, SeminarEventDesign } from '@/templates/shared/event-like-design'
 import type {
   EventHighlight,
@@ -302,7 +303,7 @@ export function EventWebSections({ data, categoryId, design }: Props) {
   }
 
   return (
-    <div className="mt-12 space-y-12 border-t pt-12 lg:mt-16 lg:space-y-16 lg:pt-16">
+    <div className={previewWebSectionsStack()}>
       {showHighlights ? <HighlightsSection items={highlights} s={s} design={design} /> : null}
       {schedule.length > 0 ? <ScheduleSection items={schedule} s={s} design={design} /> : null}
       {showSpeakers ? <SpeakersSection items={speakers} s={s} design={design} /> : null}

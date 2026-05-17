@@ -1,6 +1,8 @@
 'use client'
 
 import { PartnerMark } from '@/templates/company/company-partner-mark'
+import { cn } from '@/lib/utils'
+import { previewWebSectionsPad, previewWebSectionsStack } from '@/templates/preview-layout'
 import type { AppIntroDesign, ConstructionIntroDesign, StartupIntroDesign } from '@/templates/shared/business-intro-design'
 import type {
   AppScreenshot,
@@ -352,10 +354,15 @@ export function BusinessIntroWebSections({ data, categoryId, design }: Props) {
   const features = data.featureCards.filter((f) => f.title.trim())
   const hasStores = Boolean(data.appStoreUrl.trim() || data.playStoreUrl.trim())
 
+  const isStoreStageApp = categoryId === 'app' && design === 'store-stage'
+  const sectionShell = isStoreStageApp
+    ? 'mx-auto max-w-6xl space-y-12 px-4 py-12 sm:px-8 lg:space-y-16 lg:py-16'
+    : cn(previewWebSectionsPad('pt-0 pb-12'), previewWebSectionsStack())
+
   if (categoryId === 'startup') {
     if (metrics.length === 0 && logos.length === 0 && features.length === 0) return null
     return (
-      <div className="mx-auto max-w-6xl space-y-12 px-4 py-12 sm:px-8 lg:space-y-16 lg:py-16">
+      <div className={sectionShell}>
         {metrics.length > 0 ? <MetricsSection items={metrics} s={s} design={design} /> : null}
         {logos.length > 0 ? <TrustedSection items={logos} s={s} /> : null}
         {features.length > 0 ? <FeatureCardsSection items={features} s={s} design={design} /> : null}
@@ -366,7 +373,7 @@ export function BusinessIntroWebSections({ data, categoryId, design }: Props) {
   if (categoryId === 'construction') {
     if (projects.length === 0 && certs.length === 0 && gallery.length === 0) return null
     return (
-      <div className="mx-auto max-w-6xl space-y-12 px-4 py-12 sm:px-8 lg:space-y-16 lg:py-16">
+      <div className={sectionShell}>
         {projects.length > 0 ? <ProjectsSection items={projects} s={s} design={design} /> : null}
         {gallery.length > 0 ? <GallerySection urls={gallery} s={s} /> : null}
         {certs.length > 0 ? <CertificationsSection items={certs} s={s} /> : null}
@@ -376,7 +383,7 @@ export function BusinessIntroWebSections({ data, categoryId, design }: Props) {
 
   if (screenshots.length === 0 && features.length === 0 && !hasStores) return null
   return (
-    <div className="mx-auto max-w-6xl space-y-12 px-4 py-12 sm:px-8 lg:space-y-16 lg:py-16">
+    <div className={sectionShell}>
       {screenshots.length > 0 ? <ScreenshotsSection items={screenshots} s={s} design={design} /> : null}
       {features.length > 0 ? <FeatureCardsSection items={features} s={s} design={design} /> : null}
       {hasStores ? <StoreLinksSection appStore={data.appStoreUrl} playStore={data.playStoreUrl} s={s} /> : null}

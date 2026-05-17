@@ -492,7 +492,7 @@ export function CompanyTemplatePreview({
               {data.logoUrl.trim() ? (
                 <img src={data.logoUrl.trim()} alt="" className="size-10 shrink-0 rounded-xl object-cover ring-2 ring-blue-100" />
               ) : (
-                <div className="size-10 shrink-0 rounded-xl bg-blue-600 ring-2 ring-blue-100" aria-hidden />
+                <div className="theme-fill-primary size-10 shrink-0 rounded-xl ring-2 ring-blue-100" aria-hidden />
               )}
               <div className="min-w-0">
                 <p className="truncate text-sm font-semibold tracking-tight text-slate-900">{data.siteName}</p>
@@ -528,7 +528,7 @@ export function CompanyTemplatePreview({
               <div className="mt-6">
                 <a
                   href={ctaHref}
-                  className="inline-flex h-11 items-center justify-center rounded-full bg-blue-600 px-8 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
+                  className="theme-fill-primary inline-flex h-11 items-center justify-center rounded-full px-8 text-sm font-semibold text-white shadow-sm transition hover:opacity-90"
                 >
                   {data.primaryCtaLabel}
                 </a>
@@ -552,7 +552,7 @@ export function CompanyTemplatePreview({
               <div className="mt-7 flex justify-center">
                 <a
                   href={ctaHref}
-                  className="inline-flex h-11 items-center justify-center rounded-full bg-blue-600 px-8 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
+                  className="theme-fill-primary inline-flex h-11 items-center justify-center rounded-full px-8 text-sm font-semibold text-white shadow-sm transition hover:opacity-90"
                 >
                   {data.primaryCtaLabel}
                 </a>

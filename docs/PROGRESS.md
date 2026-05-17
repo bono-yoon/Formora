@@ -1,6 +1,6 @@
 # 진행 기록 (Progress)
 
-> 최종 갱신: 2026-05-13
+> 최종 갱신: 2026-05-17
 
 ## MVP 로드맵 (S1–S9)
 
@@ -57,7 +57,47 @@
 
 `npm run build` · `npm run lint` 통과 확인.
 
+## S10 — 웹 축소판 미리보기 (2026-05-17)
+
+| 항목 | 내용 | 상태 |
+|------|------|------|
+| S10a | `ScaledWebCanvas` — 1280px 논리 폭을 패널에 맞게 `scale` 축소 | 완료 |
+| S10b | `PreviewFrame` 웹 셸 — 고정 높이(~540px)·브라우저 크롬 유지, 전체화면은 1:1 | 완료 |
+| S10c | 웹 본문 `min-h-[92vh]` 제거 — 추가 섹션과의 빈 공간 제거 | 완료 |
+
+**변경 파일:** `ScaledWebCanvas.tsx`, `PreviewFrame.tsx`, `preview-layout.ts`, 미리보기 래퍼(포트폴리오·이벤트·비즈니스)
+
+---
+
+## S11 — 대표 컬러 (2026-05-17)
+
+| 항목 | 내용 | 상태 |
+|------|------|------|
+| S11a | `variant-themes.ts` — 카테고리·변형별 3~5 슬롯 기본 hex | 완료 |
+| S11b | `ThemeColorPanel` + `ThemeColorsProvider` + `PreviewThemeRoot` | 완료 |
+| S11c | `theme-*` CSS 유틸 + 이벤트/세미나·회사 minimal 등 부분 연동 | 진행 중 |
+| S11d | 보내기 HTML에 `--formora-*` 인라인 | 예정 |
+
+**문서:** [`THEME_COLORS.md`](./THEME_COLORS.md)
+
+---
+
+## S12 — 다중 페이지·메뉴 (설계 확정 → 구현 대기)
+
+| 항목 | 내용 | 상태 |
+|------|------|------|
+| S12 | `docs/MULTI_PAGE_DESIGN.md` — 공통 브랜드 헤더, 웨딩 제외, `store-stage` 서브 재사용 | 설계 확정 |
+| S12-P1 | `SiteDocument` + 페이지 CRUD + `brandHeader` | Git 반영 후 착수 |
+
+**확정:** 페이지별 히어로 없음 · 웨딩 다중 페이지 제외 · 앱 `store-stage` 서브페이지 레이아웃 재사용.
+
+**문서:** [`MULTI_PAGE_DESIGN.md`](./MULTI_PAGE_DESIGN.md)
+
+---
+
 ## 다음 작업
 
+- S11c: 나머지 변형에 `theme-*` 클래스 점진 적용.
+- S11d: 정적 보내기에 테마 변수 반영.
+- S12-P1: Git 반영 완료 후 다중 페이지 P1 구현.
 - 번들 분리(동적 import), 보내기 Phase B는 기존 기술 부채 항목 유지.
-- 추가 요구 시 [`EXTENDED_ROADMAP.md`](./EXTENDED_ROADMAP.md) 4절 이후를 따릅니다.

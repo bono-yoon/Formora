@@ -2,6 +2,7 @@ import { Plus, Trash2 } from 'lucide-react'
 import { useMemo, useState } from 'react'
 
 import { ExportToolbar } from '@/components/builder/ExportToolbar'
+import { BuilderThemedPreview } from '@/components/builder/BuilderThemedPreview'
 import { PreviewFrame } from '@/components/builder/PreviewFrame'
 import { BuilderFormField } from '@/features/builder/BuilderFormField'
 import { usePreviewTarget } from '@/features/builder/use-preview-target'
@@ -280,7 +281,9 @@ export function PortfolioBuilderView({ variantId }: { variantId: string }) {
       </div>
 
       <PreviewFrame className="lg:min-w-0 lg:flex-1">
-        <PortfolioTemplatePreview data={data} variant={portfolioVariantFromCatalogId(variantId)} layout={target} />
+        <BuilderThemedPreview categoryId="portfolio" variantId={variantId}>
+          <PortfolioTemplatePreview data={data} variant={portfolioVariantFromCatalogId(variantId)} layout={target} />
+        </BuilderThemedPreview>
       </PreviewFrame>
     </div>
   )

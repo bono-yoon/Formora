@@ -5,6 +5,8 @@ import { Link, useParams } from 'react-router-dom'
 import { CategoryBuilderRouter } from '@/features/builder/CategoryBuilderRouter'
 import { PreviewModeToggle } from '@/features/builder/PreviewModeToggle'
 import { PreviewTargetProvider } from '@/features/builder/preview-target-context'
+import { ThemeColorPanel } from '@/features/builder/ThemeColorPanel'
+import { ThemeColorsProvider } from '@/features/builder/theme-colors-context'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -48,6 +50,7 @@ export function BuilderPage() {
 
   return (
     <PreviewTargetProvider lockedMobile={cat.previewMobileOnly}>
+      <ThemeColorsProvider categoryId={cat.id} variantId={variant.id}>
       <div className="flex min-w-0 max-w-full flex-1 flex-col gap-6">
         <div className="flex flex-wrap items-center gap-3">
           <Button variant="ghost" size="sm" className="gap-1.5 px-2" asChild>
@@ -63,12 +66,14 @@ export function BuilderPage() {
 
         <div className="flex flex-wrap items-center justify-between gap-3">
           <p className="text-xs text-muted-foreground">
-            미리보기 타깃은 기기 셸(모바일 베젤 / 웹 브라우저 창)로 구분됩니다. 보내기 HTML에는{' '}
-            <code className="rounded bg-muted px-1">data-export-target</code>이 반영되며, 웹에서는 우측 상단{' '}
-            <span className="font-medium text-foreground">전체화면</span>으로 넓게 확인할 수 있습니다.
+            미리보기 타깃은 기기 셸(모바일 베젤 / 웹 브라우저 축소판)로 구분됩니다. 웹은 1280px 캔버스를
+            축소해 한눈에 보여 주며, 필요 시 <span className="font-medium text-foreground">전체화면</span>으로
+            확대할 수 있습니다.
           </p>
           <PreviewModeToggle />
         </div>
+
+        {!cat.previewMobileOnly ? <ThemeColorPanel categoryId={cat.id} variantId={variant.id} /> : null}
 
         <AnimatePresence mode="wait">
           <motion.div
@@ -83,6 +88,7 @@ export function BuilderPage() {
           </motion.div>
         </AnimatePresence>
       </div>
+      </ThemeColorsProvider>
     </PreviewTargetProvider>
   )
 }

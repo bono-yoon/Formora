@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 
 import { ExportToolbar } from '@/components/builder/ExportToolbar'
+import { BuilderThemedPreview } from '@/components/builder/BuilderThemedPreview'
 import { PreviewFrame } from '@/components/builder/PreviewFrame'
 import { BuilderFormField } from '@/features/builder/BuilderFormField'
 import { usePreviewTarget } from '@/features/builder/use-preview-target'
@@ -211,12 +212,14 @@ export function EventLikeBuilderView({ categoryId, variantId }: EventLikeBuilder
       </div>
 
       <PreviewFrame className="lg:min-w-0 lg:flex-1">
-        <EventLikeTemplatePreview
-          data={data}
-          categoryId={categoryId}
-          design={categoryId === 'seminar' ? seminarDesign : eventDesign}
-          layout={target}
-        />
+        <BuilderThemedPreview categoryId={categoryId} variantId={variantId}>
+          <EventLikeTemplatePreview
+            data={data}
+            categoryId={categoryId}
+            design={categoryId === 'seminar' ? seminarDesign : eventDesign}
+            layout={target}
+          />
+        </BuilderThemedPreview>
       </PreviewFrame>
     </div>
   )

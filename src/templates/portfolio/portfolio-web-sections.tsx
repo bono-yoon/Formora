@@ -1,6 +1,7 @@
 'use client'
 
 import type { PortfolioDesignVariant } from '@/templates/portfolio/portfolio-variant'
+import { previewWebSectionsStack } from '@/templates/preview-layout'
 import type {
   PortfolioPageData,
   PortfolioProject,
@@ -260,7 +261,7 @@ export function PortfolioWebSections({ data, variant }: Props) {
   if (projects.length === 0 && skills.length === 0 && testimonials.length === 0) return null
 
   return (
-    <div className="mt-14 space-y-14 border-t pt-14 lg:mt-20 lg:space-y-20 lg:pt-20">
+    <div className={previewWebSectionsStack()}>
       {projects.length > 0 ? <ProjectsSection items={projects} s={s} variant={variant} /> : null}
       {skills.length > 0 ? <SkillsSection items={skills} s={s} variant={variant} /> : null}
       {testimonials.length > 0 ? <TestimonialsSection items={testimonials} s={s} variant={variant} /> : null}

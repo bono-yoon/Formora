@@ -128,3 +128,55 @@
     @apply min-h-dvh min-w-0 overflow-x-hidden;
   }
 }
+
+/* 빌더 대표 컬러 — .formora-theme-root 에 --formora-* 변수 주입 */
+@layer components {
+  .formora-theme-root .theme-fill-primary {
+    background-color: var(--formora-primary);
+  }
+
+  .formora-theme-root .theme-fill-secondary {
+    background-color: var(--formora-secondary);
+  }
+
+  .formora-theme-root .theme-fill-accent {
+    background-color: var(--formora-accent);
+  }
+
+  .formora-theme-root .theme-bg-surface {
+    background-color: var(--formora-surface);
+  }
+
+  .formora-theme-root .theme-text-primary {
+    color: var(--formora-primary);
+  }
+
+  .formora-theme-root .theme-text-accent {
+    color: var(--formora-accent);
+  }
+
+  .formora-theme-root .theme-text-body {
+    color: var(--formora-text);
+  }
+
+  .formora-theme-root .theme-border-primary {
+    border-color: color-mix(in srgb, var(--formora-primary) 30%, transparent);
+  }
+
+  .formora-theme-root .theme-gradient-hero {
+    background-image: linear-gradient(
+      to bottom right,
+      var(--formora-accent),
+      var(--formora-primary),
+      var(--formora-secondary)
+    );
+  }
+
+  .formora-theme-root .theme-gradient-hero-soft {
+    background-image: linear-gradient(
+      to bottom right,
+      var(--formora-secondary),
+      var(--formora-primary)
+    );
+  }
+}

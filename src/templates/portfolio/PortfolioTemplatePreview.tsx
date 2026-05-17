@@ -2,7 +2,8 @@ import type { PortfolioDesignVariant } from '@/templates/portfolio/portfolio-var
 import { PortfolioWebSections } from '@/templates/portfolio/portfolio-web-sections'
 import type { PortfolioPageData } from '@/templates/portfolio/schema'
 import type { PageLayoutProfile } from '@/templates/page-layout'
-import { webViewportFill } from '@/templates/web-viewport-fill'
+import { previewPageRoot, previewWebSectionsPad } from '@/templates/preview-layout'
+import { cn } from '@/lib/utils'
 
 const portfolioWebShell: Record<PortfolioDesignVariant, string> = {
   'noir-studio': 'bg-zinc-950 text-zinc-100',
@@ -19,7 +20,6 @@ type PortfolioTemplatePreviewProps = {
   layout?: PageLayoutProfile
 }
 
-const root = 'min-h-full min-w-0 max-w-full break-words antialiased'
 
 function PortfolioNoirStudio({ data, layout }: { data: PortfolioPageData; layout: PageLayoutProfile }) {
   const href = data.projectUrl.trim() || '#'
@@ -74,7 +74,7 @@ function PortfolioNoirStudio({ data, layout }: { data: PortfolioPageData; layout
   )
 
   return (
-    <div className={`${root} bg-zinc-950 text-zinc-100 ${webViewportFill(isWeb)}`}>
+    <div className={`${previewPageRoot(layout)} bg-zinc-950 text-zinc-100`}>
       <div className={isWeb ? 'mx-auto max-w-7xl px-6 py-10 sm:px-10 lg:px-14 lg:py-14' : 'mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-10 lg:py-12'}>
         {isWeb ? (
           <div className="grid min-w-0 gap-10 lg:grid-cols-12 lg:gap-12">
@@ -97,7 +97,7 @@ function PortfolioDaylightEditorial({ data, layout }: { data: PortfolioPageData;
   const isWeb = layout === 'web'
 
   return (
-    <div className={`${root} bg-white text-stone-900 ${webViewportFill(isWeb)}`}>
+    <div className={`${previewPageRoot(layout)} bg-white text-stone-900`}>
       <div className={isWeb ? 'mx-auto max-w-6xl border-x-2 border-stone-200 px-8 py-16 sm:px-12 lg:py-24' : 'mx-auto max-w-3xl border-x border-stone-200 px-6 py-12 sm:px-10 lg:py-16'}>
         <p className="font-serif text-xs italic text-red-800/90">Portfolio</p>
         <h1 className="mt-2 font-serif text-4xl font-medium tracking-tight sm:text-5xl">{data.displayName}</h1>
@@ -141,7 +141,7 @@ function PortfolioFilmReel({ data, layout }: { data: PortfolioPageData; layout: 
   const isWeb = layout === 'web'
 
   return (
-    <div className={`${root} bg-neutral-900 text-neutral-100 ${webViewportFill(isWeb)}`}>
+    <div className={`${previewPageRoot(layout)} bg-neutral-900 text-neutral-100`}>
       <div className="border-b border-neutral-700 bg-black px-4 py-4 sm:px-6">
         <h1 className="text-lg font-bold uppercase tracking-[0.25em] text-neutral-300">{data.displayName}</h1>
         {data.role.trim() ? <p className="mt-1 text-xs text-neutral-500">{data.role}</p> : null}
@@ -189,7 +189,7 @@ function PortfolioSwissIndex({ data, layout }: { data: PortfolioPageData; layout
   const isWeb = layout === 'web'
 
   return (
-    <div className={`${root} bg-neutral-50 text-neutral-900 ${webViewportFill(isWeb)}`}>
+    <div className={`${previewPageRoot(layout)} bg-neutral-50 text-neutral-900`}>
       <div className={isWeb ? 'mx-auto max-w-7xl px-6 py-16 sm:px-12 lg:py-24' : 'mx-auto max-w-5xl px-4 py-12 sm:px-8 lg:py-16'}>
         <div className="flex flex-wrap items-baseline justify-between gap-4 border-b-2 border-black pb-6">
           <span className="text-8xl font-black leading-none text-black/10 sm:text-[7rem]">01</span>
@@ -265,13 +265,13 @@ export function PortfolioTemplatePreview({
   if (!isWeb) return content
 
   return (
-    <>
+    <div className={previewPageRoot(layout)}>
       {content}
-      <div className={portfolioWebShell[variant]}>
-        <div className="mx-auto max-w-7xl px-6 pb-20 sm:px-10 lg:px-14">
+      <div className={cn(portfolioWebShell[variant])}>
+        <div className={previewWebSectionsPad('max-w-7xl pt-0 lg:max-w-7xl')}>
           <PortfolioWebSections data={data} variant={variant} />
         </div>
       </div>
-    </>
+    </div>
   )
 }

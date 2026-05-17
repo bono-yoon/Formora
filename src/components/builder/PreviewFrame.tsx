@@ -2,6 +2,7 @@ import { Lock, Maximize2, X } from 'lucide-react'
 import { type ReactNode, useEffect, useId, useState } from 'react'
 import { createPortal } from 'react-dom'
 
+import { ScaledWebCanvas } from '@/components/builder/ScaledWebCanvas'
 import { usePreviewTarget } from '@/features/builder/use-preview-target'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
@@ -16,18 +17,18 @@ function MobileDeviceShell({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-0 flex-1 flex-col items-center justify-start overflow-x-hidden rounded-2xl border border-border bg-gradient-to-b from-zinc-200/80 to-zinc-300/60 p-3 shadow-inner sm:p-4 dark:from-zinc-900/80 dark:to-zinc-950/60">
       <p className="mb-3 shrink-0 text-center text-[11px] font-medium text-muted-foreground">
-        모바일 기기 · 좁은 뷰포트(약 390px) 시뮬레이션
+        모바일 기기 · 390×680px 고정 프레임
       </p>
       <div
         className={cn(
-          'flex w-full max-w-[min(100%,400px)] flex-col rounded-[2.35rem] border-[10px] border-zinc-800 bg-zinc-800 p-1 shadow-xl ring-1 ring-black/15',
-          'max-h-[min(68vh,700px)] min-h-0',
+          'flex w-[min(100%,390px)] shrink-0 flex-col rounded-[2.35rem] border-[10px] border-zinc-800 bg-zinc-800 p-1 shadow-xl ring-1 ring-black/15',
+          'h-[min(68vh,680px)] min-h-[520px] max-h-[680px]',
         )}
       >
         <div className="flex shrink-0 justify-center pb-1 pt-2" aria-hidden>
           <span className="block h-5 w-[4.5rem] rounded-full bg-zinc-950/90" />
         </div>
-        <div className="min-h-0 min-w-0 max-w-full flex-1 overflow-x-hidden overflow-y-auto rounded-2xl bg-background">
+        <div className="preview-mobile-viewport min-h-0 min-w-0 w-full flex-1 overflow-x-hidden overflow-y-auto rounded-2xl bg-background [&>*]:min-h-0">
           {children}
         </div>
         <div className="flex shrink-0 justify-center py-2" aria-hidden>
@@ -42,12 +43,12 @@ function WebBrowserShell({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl border border-border bg-muted/30 p-3 shadow-inner sm:p-4">
       <p className="mb-2 shrink-0 text-[11px] font-medium text-muted-foreground">
-        데스크톱 브라우저 · 넓은 캔버스(최대 1280px) + 창 크롬
+        데스크톱 브라우저 축소판 · 1280px 기준 비율 축소 (전체화면 없이 레이아웃 확인)
       </p>
       <div
         className={cn(
           'flex min-h-0 w-full flex-1 flex-col overflow-hidden rounded-xl border border-border bg-background shadow-md',
-          'max-h-[min(76vh,860px)] min-h-[min(52vh,480px)]',
+          'h-[min(58vh,540px)] max-h-[min(58vh,540px)]',
         )}
       >
         <div
@@ -64,9 +65,9 @@ function WebBrowserShell({ children }: { children: ReactNode }) {
             <span className="truncate font-mono text-[11px]">https://preview.local/landing</span>
           </div>
         </div>
-        <div className="mx-auto min-h-0 w-full min-w-0 max-w-[1280px] flex-1 overflow-x-hidden overflow-y-auto bg-background">
+        <ScaledWebCanvas maxHeight="100%" className="min-h-0 flex-1 bg-background">
           {children}
-        </div>
+        </ScaledWebCanvas>
       </div>
     </div>
   )

@@ -2,7 +2,7 @@ import type { EventLikeData } from '@/templates/shared/event-like-schema'
 import type { EventOnlyDesign, SeminarEventDesign } from '@/templates/shared/event-like-design'
 import { EventWebSections } from '@/templates/shared/event-web-sections'
 import type { PageLayoutProfile } from '@/templates/page-layout'
-import { webViewportFill } from '@/templates/web-viewport-fill'
+import { previewPageRoot, previewWebSectionsPad } from '@/templates/preview-layout'
 
 export type { SeminarEventDesign, EventOnlyDesign } from '@/templates/shared/event-like-design'
 
@@ -13,8 +13,6 @@ export type EventLikeTemplatePreviewProps = {
   design: SeminarEventDesign | EventOnlyDesign
   layout?: PageLayoutProfile
 }
-
-const root = 'min-h-full min-w-0 max-w-full break-words antialiased'
 
 function SeminarTrackBoard({
   data,
@@ -27,18 +25,18 @@ function SeminarTrackBoard({
 }) {
   const isWeb = layout === 'web'
   return (
-    <div className={`${root} bg-slate-50 text-slate-900 ${webViewportFill(isWeb)}`}>
-      <header className="border-b border-indigo-200/60 bg-gradient-to-br from-indigo-700 via-violet-700 to-indigo-900 text-white">
-        <div className="mx-auto flex min-w-0 max-w-6xl flex-col gap-6 px-4 py-10 sm:flex-row sm:items-end sm:justify-between sm:px-8 lg:px-10 lg:py-14">
+    <div className={`${previewPageRoot(layout)} theme-bg-surface flex flex-col text-slate-900`}>
+      <header className="theme-gradient-hero shrink-0 border-b border-indigo-200/60 text-white">
+        <div className="mx-auto flex min-w-0 max-w-6xl flex-col gap-4 px-4 py-6 sm:flex-row sm:items-end sm:justify-between sm:px-6 sm:py-8 lg:px-10 lg:py-14">
           <div className="min-w-0">
             <p className="text-[10px] font-bold uppercase tracking-[0.35em] text-indigo-200/90">Conference</p>
-            <h1 className="mt-3 text-balance text-2xl font-semibold tracking-tight sm:text-3xl lg:text-4xl">{data.eventTitle}</h1>
-            <p className="mt-3 max-w-xl text-sm text-indigo-100/95">{data.dateLine}</p>
+            <h1 className="mt-2 text-balance text-xl font-semibold tracking-tight sm:text-3xl lg:text-4xl">{data.eventTitle}</h1>
+            <p className="mt-2 max-w-xl text-sm text-indigo-100/95">{data.dateLine}</p>
           </div>
-          {!isWeb ? (
+          {isWeb ? (
             <a
               href={ticket}
-              className="inline-flex h-12 w-full shrink-0 items-center justify-center rounded-xl bg-white px-6 text-sm font-semibold text-indigo-900 shadow-lg sm:w-auto"
+              className="hidden h-12 shrink-0 items-center justify-center rounded-xl bg-white px-6 text-sm font-semibold text-indigo-900 shadow-lg lg:inline-flex"
             >
               등록하기
             </a>
@@ -46,7 +44,7 @@ function SeminarTrackBoard({
         </div>
       </header>
 
-      <div className="mx-auto grid min-w-0 max-w-6xl gap-0 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-10 lg:px-8 lg:py-12">
+      <div className="mx-auto flex min-w-0 w-full max-w-6xl flex-col lg:grid lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-10 lg:px-8 lg:py-12">
         <div className="min-w-0 space-y-0 lg:space-y-10">
           <div
             className={
@@ -56,15 +54,15 @@ function SeminarTrackBoard({
             }
           >
             <div className="bg-white px-4 py-4 sm:px-5">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-indigo-500">일정</p>
+              <p className="theme-text-primary text-[10px] font-bold uppercase tracking-widest">일정</p>
               <p className="mt-2 text-sm font-medium text-slate-900">{data.dateLine}</p>
             </div>
             <div className="bg-white px-4 py-4 sm:px-5">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-indigo-500">장소</p>
+              <p className="theme-text-primary text-[10px] font-bold uppercase tracking-widest">장소</p>
               <p className="mt-2 text-sm font-medium text-slate-900">{data.venue.trim() || '추후 공지'}</p>
             </div>
             <div className="bg-white px-4 py-4 sm:px-5">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-indigo-500">주최</p>
+              <p className="theme-text-primary text-[10px] font-bold uppercase tracking-widest">주최</p>
               <p className="mt-2 text-sm font-medium text-slate-900">{data.organizerName.trim() || '—'}</p>
             </div>
           </div>
@@ -91,7 +89,7 @@ function SeminarTrackBoard({
               <p className="mt-2 text-sm text-slate-600">{data.dateLine}</p>
               <a
                 href={ticket}
-                className="mt-6 flex h-12 w-full items-center justify-center rounded-xl bg-indigo-700 text-sm font-semibold text-white hover:bg-indigo-800"
+                className="theme-fill-primary mt-6 flex h-12 w-full items-center justify-center rounded-xl text-sm font-semibold text-white hover:opacity-90"
               >
                 등록하기
               </a>
@@ -99,6 +97,17 @@ function SeminarTrackBoard({
           </aside>
         ) : null}
       </div>
+
+      {!isWeb ? (
+        <div className="sticky bottom-0 z-10 shrink-0 border-t border-indigo-200/60 bg-white/95 p-4 backdrop-blur-sm">
+          <a
+            href={ticket}
+            className="theme-fill-primary flex h-11 w-full items-center justify-center rounded-xl text-sm font-semibold text-white shadow-md"
+          >
+            등록하기
+          </a>
+        </div>
+      ) : null}
     </div>
   )
 }
@@ -126,7 +135,7 @@ function SeminarPromoRibbon({
       <p className="mt-2 text-sm text-slate-600">{data.dateLine}</p>
       <a
         href={ticket}
-        className="mt-6 flex h-12 w-full min-w-0 items-center justify-center rounded-xl bg-sky-600 text-sm font-semibold text-white hover:bg-sky-700"
+        className="theme-fill-primary mt-6 flex h-12 w-full min-w-0 items-center justify-center rounded-xl text-sm font-semibold text-white hover:opacity-90"
       >
         등록하기
       </a>
@@ -134,7 +143,7 @@ function SeminarPromoRibbon({
   )
 
   return (
-    <div className={`${root} bg-sky-50/80 text-slate-900 ${webViewportFill(isWeb)}`}>
+    <div className={`${previewPageRoot(layout)} theme-bg-surface text-slate-900`}>
       <section className="relative min-w-0 overflow-hidden border-b border-sky-200/80">
         {data.heroImageUrl.trim() ? (
           <img
@@ -143,7 +152,7 @@ function SeminarPromoRibbon({
             className={isWeb ? 'h-52 w-full object-cover sm:h-64' : 'h-44 w-full object-cover sm:h-48'}
           />
         ) : (
-          <div className={isWeb ? 'h-52 bg-gradient-to-br from-sky-400 to-blue-700 sm:h-64' : 'h-44 bg-gradient-to-br from-sky-400 to-blue-700 sm:h-48'} />
+          <div className={isWeb ? 'theme-gradient-hero-soft h-52 sm:h-64' : 'theme-gradient-hero-soft h-44 sm:h-48'} />
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-sky-950/60 to-transparent" />
         <div className="absolute inset-x-0 bottom-0 max-w-6xl px-4 pb-6 pt-16 text-white sm:px-8 sm:pb-8 lg:mx-auto lg:px-10">
@@ -155,7 +164,7 @@ function SeminarPromoRibbon({
       <div className="border-b border-sky-200 bg-white">
         <div className="mx-auto max-w-6xl min-w-0">
           <div className="border-b border-sky-100 bg-sky-50/50 px-4 py-3 sm:px-8">
-            <p className="text-[10px] font-bold uppercase tracking-widest text-sky-600">일정</p>
+            <p className="text-[10px] font-bold uppercase tracking-widest theme-text-primary">일정</p>
             <p className="mt-1 text-sm font-medium text-slate-900">{data.dateLine}</p>
           </div>
           <div
@@ -164,11 +173,11 @@ function SeminarPromoRibbon({
             }
           >
             <div className="min-w-0 px-4 py-3 sm:px-8">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-sky-600">장소</p>
+              <p className="text-[10px] font-bold uppercase tracking-widest theme-text-primary">장소</p>
               <p className="mt-1 text-sm font-medium text-slate-900">{data.venue.trim() || '추후 공지'}</p>
             </div>
             <div className="min-w-0 px-4 py-3 sm:px-8">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-sky-600">주최</p>
+              <p className="text-[10px] font-bold uppercase tracking-widest theme-text-primary">주최</p>
               <p className="mt-1 text-sm font-medium text-slate-900">{data.organizerName.trim() || '—'}</p>
             </div>
           </div>
@@ -199,7 +208,7 @@ function SeminarPromoRibbon({
 function EventCampaignPoster({ data, layout, ticket }: { data: EventLikeData; layout: PageLayoutProfile; ticket: string }) {
   const isWeb = layout === 'web'
   return (
-    <div className={`${root} bg-amber-50 text-stone-900 ${webViewportFill(isWeb)}`}>
+    <div className={`${previewPageRoot(layout)} bg-amber-50 text-stone-900`}>
       <div className="relative overflow-hidden bg-stone-900 text-amber-50">
         <div className="pointer-events-none absolute -right-16 top-0 h-64 w-64 rounded-full bg-rose-500/25 blur-3xl" aria-hidden />
         <div className="pointer-events-none absolute -left-20 bottom-0 h-48 w-48 rounded-full bg-amber-400/15 blur-2xl" aria-hidden />
@@ -269,7 +278,7 @@ function EventCampaignPoster({ data, layout, ticket }: { data: EventLikeData; la
 function EventNeonStack({ data, layout, ticket }: { data: EventLikeData; layout: PageLayoutProfile; ticket: string }) {
   const isWeb = layout === 'web'
   return (
-    <div className={`${root} bg-gradient-to-b from-violet-950 via-purple-950 to-zinc-950 text-violet-50 ${webViewportFill(isWeb)}`}>
+    <div className={`${previewPageRoot(layout)} bg-gradient-to-b from-violet-950 via-purple-950 to-zinc-950 text-violet-50`}>
       <div className="mx-auto max-w-lg px-4 py-12 sm:py-16">
         <p className="text-center text-[10px] font-bold uppercase tracking-[0.5em] text-fuchsia-400/90">Promo stack</p>
         <h1 className="mt-6 text-center text-balance text-2xl font-semibold sm:text-3xl">{data.eventTitle}</h1>
@@ -303,7 +312,7 @@ function EventNeonStack({ data, layout, ticket }: { data: EventLikeData; layout:
 function EventBillboardSplit({ data, layout, ticket }: { data: EventLikeData; layout: PageLayoutProfile; ticket: string }) {
   const isWeb = layout === 'web'
   return (
-    <div className={`${root} bg-black text-white ${webViewportFill(isWeb)}`}>
+    <div className={`${previewPageRoot(layout)} bg-black text-white`}>
       <div className={isWeb ? 'grid min-h-[min(70vh,520px)] sm:grid-cols-2' : 'flex min-h-[420px] flex-col'}>
         <div className="flex flex-col justify-end bg-lime-400 p-6 text-black sm:p-10">
           <p className="text-xs font-black uppercase tracking-widest">On air</p>
@@ -333,7 +342,7 @@ function EventBillboardSplit({ data, layout, ticket }: { data: EventLikeData; la
 function EventRibbonRow({ data, layout, ticket }: { data: EventLikeData; layout: PageLayoutProfile; ticket: string }) {
   const isWeb = layout === 'web'
   return (
-    <div className={`${root} bg-white text-stone-900 ${webViewportFill(isWeb)}`}>
+    <div className={`${previewPageRoot(layout)} bg-white text-stone-900`}>
       <div className="divide-y divide-stone-900 border-y-4 border-stone-900">
         <div className="bg-orange-400 px-4 py-4 sm:px-8">
           <p className="text-[10px] font-black uppercase tracking-[0.3em] text-stone-900">Row 01</p>
@@ -364,7 +373,7 @@ function SeminarSpeakerFan({ data, layout, ticket }: { data: EventLikeData; layo
     data.dateLine.slice(0, 24) || 'Session',
   ]
   return (
-    <div className={`${root} bg-slate-100 text-slate-900 ${webViewportFill(isWeb)}`}>
+    <div className={`${previewPageRoot(layout)} bg-slate-100 text-slate-900`}>
       <header className="border-b border-slate-200 bg-white px-4 py-8 text-center sm:px-8">
         <p className="text-[10px] font-bold uppercase tracking-[0.35em] text-indigo-600">Speakers</p>
         <h1 className="mt-3 text-balance text-2xl font-semibold sm:text-3xl">{data.eventTitle}</h1>
@@ -402,7 +411,7 @@ function SeminarDigestColumns({ data, layout, ticket }: { data: EventLikeData; l
   const colB = desc.slice(half)
 
   return (
-    <div className={`${root} bg-[#faf8f5] text-stone-900 ${webViewportFill(isWeb)}`}>
+    <div className={`${previewPageRoot(layout)} bg-[#faf8f5] text-stone-900`}>
       <div className="border-b-2 border-double border-stone-800">
         <div className="mx-auto max-w-4xl px-4 py-6 sm:px-8">
           <p className="font-serif text-xs uppercase tracking-[0.3em] text-stone-500">Seminar digest</p>
@@ -480,13 +489,13 @@ export function EventLikeTemplatePreview({
   if (!isWeb) return content
 
   return (
-    <>
+    <div className={previewPageRoot(layout)}>
       {content}
       <div className="bg-white text-slate-900">
-        <div className="mx-auto max-w-6xl px-4 pb-16 sm:px-8 lg:px-10">
+        <div className={previewWebSectionsPad('pt-0')}>
           <EventWebSections data={data} categoryId={categoryId} design={design} />
         </div>
       </div>
-    </>
+    </div>
   )
 }

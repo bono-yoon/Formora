@@ -2,6 +2,7 @@ import { Plus, Trash2 } from 'lucide-react'
 import { useMemo, useState } from 'react'
 
 import { ExportToolbar } from '@/components/builder/ExportToolbar'
+import { BuilderThemedPreview } from '@/components/builder/BuilderThemedPreview'
 import { PreviewFrame } from '@/components/builder/PreviewFrame'
 import { BuilderFormField } from '@/features/builder/BuilderFormField'
 import { usePreviewTarget } from '@/features/builder/use-preview-target'
@@ -182,7 +183,9 @@ export function BusinessIntroBuilderView({ categoryId, variantId }: BusinessIntr
       </div>
 
       <PreviewFrame className="lg:min-w-0 lg:flex-1">
-        <BusinessIntroTemplatePreview data={data} categoryId={categoryId} design={design} layout={target} />
+        <BuilderThemedPreview categoryId={categoryId} variantId={variantId}>
+          <BusinessIntroTemplatePreview data={data} categoryId={categoryId} design={design} layout={target} />
+        </BuilderThemedPreview>
       </PreviewFrame>
     </div>
   )

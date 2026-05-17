@@ -6,7 +6,7 @@ import type {
   StartupIntroDesign,
 } from '@/templates/shared/business-intro-design'
 import type { PageLayoutProfile } from '@/templates/page-layout'
-import { webViewportFill } from '@/templates/web-viewport-fill'
+import { previewPageRoot } from '@/templates/preview-layout'
 
 export type { AppIntroDesign, ConstructionIntroDesign, StartupIntroDesign } from '@/templates/shared/business-intro-design'
 
@@ -17,7 +17,6 @@ export type BusinessIntroTemplatePreviewProps = {
   layout?: PageLayoutProfile
 }
 
-const root = 'min-h-full min-w-0 max-w-full break-words antialiased'
 
 function ConstructionClassic({ data, layout }: { data: BusinessIntroData; layout: PageLayoutProfile }) {
   const cta = data.ctaUrl.trim() || '#'
@@ -55,7 +54,7 @@ function ConstructionClassic({ data, layout }: { data: BusinessIntroData; layout
   )
 
   return (
-    <div className={`${root} bg-white text-slate-900 ${webViewportFill(isWeb)}`}>
+    <div className={`${previewPageRoot(layout)} bg-white text-slate-900`}>
       <section className={`relative overflow-hidden bg-gradient-to-br ${hero} px-4 py-12 text-white sm:px-8 sm:py-16 lg:px-10 lg:py-20`}>
         {data.heroImageUrl.trim() ? (
           <img src={data.heroImageUrl.trim()} alt="" className="absolute inset-0 size-full object-cover opacity-40" />
@@ -158,7 +157,7 @@ function StartupMissionSplit({ data, layout }: { data: BusinessIntroData; layout
   const cards = [0, 1, 2].map((i) => data.bullets[i] ?? fallback[i])
 
   return (
-    <div className={`${root} bg-zinc-50 text-zinc-900 ${webViewportFill(isWeb)}`}>
+    <div className={`${previewPageRoot(layout)} bg-zinc-50 text-zinc-900`}>
       <section className="border-b border-violet-200/60 bg-gradient-to-b from-violet-600 to-fuchsia-700 px-4 py-14 text-center text-white sm:py-16 lg:py-20">
         {data.heroImageUrl.trim() ? (
           <img src={data.heroImageUrl.trim()} alt="" className="mx-auto mb-8 max-h-40 rounded-2xl object-cover opacity-90 shadow-lg" />
@@ -207,7 +206,7 @@ function StartupVelocityRail({ data, layout }: { data: BusinessIntroData; layout
   const isWeb = layout === 'web'
 
   return (
-    <div className={`${root} bg-slate-950 text-slate-100 ${webViewportFill(isWeb)}`}>
+    <div className={`${previewPageRoot(layout)} bg-slate-950 text-slate-100`}>
       <div className="border-b border-cyan-500/30 bg-slate-900/80">
         <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-8">
           <span className="text-xs font-medium uppercase tracking-widest text-cyan-300/90">{data.orgName}</span>
@@ -256,7 +255,7 @@ function StartupHorizonProof({ data, layout }: { data: BusinessIntroData; layout
   const isWeb = layout === 'web'
 
   return (
-    <div className={`${root} bg-gradient-to-b from-orange-200 via-rose-50 to-white text-stone-900 ${webViewportFill(isWeb)}`}>
+    <div className={`${previewPageRoot(layout)} bg-gradient-to-b from-orange-200 via-rose-50 to-white text-stone-900`}>
       <div className="mx-auto max-w-5xl px-4 py-14 sm:px-8 lg:py-20">
         <p className="text-center text-[10px] font-bold uppercase tracking-[0.4em] text-orange-900/70">Proof</p>
         <h1 className="mx-auto mt-4 max-w-3xl text-center text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
@@ -303,7 +302,7 @@ function StartupInkLedger({ data, layout }: { data: BusinessIntroData; layout: P
   const isWeb = layout === 'web'
 
   return (
-    <div className={`${root} bg-[#1a2332] text-amber-50 ${webViewportFill(isWeb)}`}>
+    <div className={`${previewPageRoot(layout)} bg-[#1a2332] text-amber-50`}>
       <div className="border-b border-amber-900/30 bg-[#141c28]">
         <div className="mx-auto max-w-4xl px-4 py-8 sm:px-8">
           <p className="font-mono text-[10px] uppercase tracking-[0.35em] text-amber-200/70">Ledger / entry</p>
@@ -339,7 +338,7 @@ function ConstructionBlueprintGrid({ data, layout }: { data: BusinessIntroData; 
   const isWeb = layout === 'web'
   return (
     <div
-      className={`${root} bg-sky-50 text-slate-900 ${webViewportFill(isWeb)}`}
+      className={`${previewPageRoot(layout)} bg-sky-50 text-slate-900`}
       style={{
         backgroundImage:
           'linear-gradient(rgba(37,99,235,0.07) 1px, transparent 1px), linear-gradient(90deg, rgba(37,99,235,0.07) 1px, transparent 1px)',
@@ -378,7 +377,7 @@ function ConstructionYardBeacon({ data, layout }: { data: BusinessIntroData; lay
   const cta = data.ctaUrl.trim() || '#'
   const isWeb = layout === 'web'
   return (
-    <div className={`${root} bg-zinc-800 text-zinc-100 ${webViewportFill(isWeb)}`}>
+    <div className={`${previewPageRoot(layout)} bg-zinc-800 text-zinc-100`}>
       <div className="flex h-4 w-full bg-[repeating-linear-gradient(-45deg,#facc15_0,#facc15_12px,#171717_12px,#171717_24px)]" aria-hidden />
       <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
         <div className="flex flex-wrap items-start justify-between gap-6">
@@ -411,7 +410,7 @@ function ConstructionTenderSeal({ data, layout }: { data: BusinessIntroData; lay
   const cta = data.ctaUrl.trim() || '#'
   const isWeb = layout === 'web'
   return (
-    <div className={`${root} bg-amber-50 text-stone-900 ${webViewportFill(isWeb)}`}>
+    <div className={`${previewPageRoot(layout)} bg-amber-50 text-stone-900`}>
       <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 lg:py-16">
         <div className="relative border-4 border-double border-stone-800 bg-[#fffdf8] p-8 shadow-sm sm:p-12">
           <div className="absolute -right-2 -top-2 flex size-20 items-center justify-center rounded-full border-4 border-red-900/80 bg-red-950/10 text-[10px] font-bold uppercase leading-tight text-red-950">
@@ -451,7 +450,7 @@ function AppStoreStage({ data, layout }: { data: BusinessIntroData; layout: Page
   const isWeb = layout === 'web'
 
   return (
-    <div className={`${root} bg-zinc-100 text-zinc-900 ${webViewportFill(isWeb)}`}>
+    <div className={`${previewPageRoot(layout)} bg-zinc-100 text-zinc-900`}>
       <div className="border-b border-zinc-200 bg-white">
         <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-center gap-3 px-4 py-4 sm:justify-between sm:px-6">
           <div className="flex gap-2">
@@ -519,7 +518,7 @@ function AppOrbitCards({ data, layout }: { data: BusinessIntroData; layout: Page
   const isWeb = layout === 'web'
 
   return (
-    <div className={`${root} relative overflow-hidden bg-[#0c0518] text-violet-100 ${webViewportFill(isWeb)}`}>
+    <div className={`${previewPageRoot(layout)} relative overflow-hidden bg-[#0c0518] text-violet-100`}>
       <div className="pointer-events-none absolute inset-0 opacity-40 [background:radial-gradient(circle_at_50%_20%,rgba(139,92,246,0.35),transparent_55%)]" aria-hidden />
       <div className="relative mx-auto max-w-5xl px-4 py-14 sm:px-8">
         <div className="text-center">
@@ -555,7 +554,7 @@ function AppSpecSlab({ data, layout }: { data: BusinessIntroData; layout: PageLa
   const isWeb = layout === 'web'
 
   return (
-    <div className={`${root} bg-zinc-100 font-mono text-zinc-900 ${webViewportFill(isWeb)}`}>
+    <div className={`${previewPageRoot(layout)} bg-zinc-100 font-mono text-zinc-900`}>
       <div className="border-b-2 border-zinc-900 bg-white px-4 py-3 sm:px-6">
         <p className="text-[10px] text-zinc-500">SPEC_SHEET / v1</p>
         <h1 className="mt-1 text-lg font-bold sm:text-xl">{data.headline}</h1>
@@ -588,7 +587,7 @@ function AppChalkPlay({ data, layout }: { data: BusinessIntroData; layout: PageL
   const isWeb = layout === 'web'
 
   return (
-    <div className={`${root} bg-purple-100 text-purple-950 ${webViewportFill(isWeb)}`}>
+    <div className={`${previewPageRoot(layout)} bg-purple-100 text-purple-950`}>
       <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6 lg:py-16">
         <div className="rounded-[2rem] border-4 border-purple-300 bg-white p-8 shadow-lg sm:p-12">
           <p className="inline-block rounded-full bg-purple-200 px-4 py-1 text-xs font-bold text-purple-900">New app</p>
@@ -672,10 +671,20 @@ export function BusinessIntroTemplatePreview({
 
   if (!isWeb) return content
 
+  const isStoreStage = categoryId === 'app' && design === 'store-stage'
+  if (isStoreStage) {
+    return (
+      <>
+        {content}
+        <BusinessIntroWebSections data={data} categoryId={categoryId} design={design} />
+      </>
+    )
+  }
+
   return (
-    <>
+    <div className={previewPageRoot(layout)}>
       {content}
       <BusinessIntroWebSections data={data} categoryId={categoryId} design={design} />
-    </>
+    </div>
   )
 }
