@@ -3,6 +3,7 @@
 클라이언트용 정적 페이지(회사 사이트, 제품 소개, 모바일 청첩장 등)를 **템플릿 + 입력값**으로 빠르게 만들고, **단일 HTML 또는 ZIP**으로 내려받는 **MVP 웹 앱**입니다.
 
 - **보안 검토:** [`docs/SECURITY.md`](./docs/SECURITY.md)
+- **Git / GitHub:** [`docs/GIT.md`](./docs/GIT.md)
 
 - **아키텍처·원 로드맵:** [`PLAN.md`](./PLAN.md)  
 - **진행 기록·기술 부채:** [`docs/PROGRESS.md`](./docs/PROGRESS.md)  

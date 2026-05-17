@@ -1,4 +1,4 @@
-# Static Page Builder Platform — MVP 계획서
+# Formora — MVP 계획서
 
 > 목표: 입력값만으로 클라이언트용 정적 사이트를 빠르게 만들고, HTML 정적 파일과 ZIP으로보내는 도구.
 > 기술: React, Vite, TypeScript, Tailwind CSS, shadcn/ui, Framer Motion, Lucide React.
